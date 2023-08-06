@@ -1,3 +1,4 @@
-.map {
-    background-color: #64BEFF;
-}
+#svg-world-map-container, #svg-world-map {
+     width: 100%; 
+     height: 100%; 
+    }

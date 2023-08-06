@@ -25,14 +25,23 @@ app.post("/", function (req,res,next) {
     if(!answers.includes(country)){
         answers.push(country);
     }
-    
+
     res.redirect("/");
     next();
 });
 
+
+
 app.listen(3000, () => {
     console.log("Server running on port " + port);
 });
+
+
+
+
+
+
+
 
 
 var countryDataJSON = { 
@@ -65,5 +74,3 @@ var countryDataJSON = {
 };
 
 const countryData = Object.values(countryDataJSON);
-
-console.log(countryData);
