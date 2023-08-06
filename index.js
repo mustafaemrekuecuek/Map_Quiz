@@ -20,26 +20,20 @@ app.get("/", (req,res) => {
 
 app.post("/", function (req,res,next) {
     let input = req.body.land.toLowerCase();
-    let country = countryData.find(country => country.name.toLowerCase() == input);
 
-    if(!answers.includes(country)){
-        answers.push(country);
+    for(let i = 0; i < countryData.length;i++){
+
+        if(countryData[i].name.toLowerCase() == input && !answers.includes(countryData[i].name)){
+            answers.push(countryID[i]);
+        }
     }
-
     res.redirect("/");
-    next();
 });
-
 
 
 app.listen(3000, () => {
     console.log("Server running on port " + port);
 });
-
-
-
-
-
 
 
 
@@ -74,3 +68,4 @@ var countryDataJSON = {
 };
 
 const countryData = Object.values(countryDataJSON);
+const countryID = Object.keys(countryDataJSON);
