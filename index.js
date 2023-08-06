@@ -17,17 +17,24 @@ app.get("/", (req,res) => {
     console.log(answers);
 });
 
-
-app.post("/", function (req,res,next) {
+app.post("/data", function (req,res,next) {
     let input = req.body.land.toLowerCase();
 
     for(let i = 0; i < countryData.length;i++){
-
-        if(countryData[i].name.toLowerCase() == input && !answers.includes(countryData[i].name)){
+        if(countryData[i].name.toLowerCase() == input && !answers.includes(countryID[i])){
             answers.push(countryID[i]);
         }
     }
-    res.redirect("/");
+    console.log(countryID[0]);
+    res.render("index.ejs", {
+        answers: answers
+    });
+    next();
+});
+
+app.get("/data", (req, res) => {
+    res.json({ answers: answers });
+    console.log(answers);
 });
 
 
