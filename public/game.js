@@ -1,17 +1,20 @@
-const map = document.querySelector("#map-container object");
+const map = document.querySelector("#map");
 
+let answerNames = [];
 fetch('http://localhost:3000/data')
   .then(response => response.json()) // Parsing the response as JSON
   .then(data => {
     answers = data.answers; // Setting the answers
-    document.getElementById('haha').innerText = answers.join(", "); // Assuming answers is an array
-    console.log(answers);
-
+    countryData = data.countryData; 
+    //Assign names to Answer Names
+    for(let i = 0; i < answers.length; i++) {
+        answerNames.push(countryData[answers[i]].name);
+    }
     // Call the function to update the SVG
     updateSVG();
   })
   .catch(error => {
-    console.error('Error:', error);
+    console.error('Error:', error.message);
   });
 
 function updateSVG() {
@@ -27,6 +30,20 @@ function updateSVG() {
             element.setAttribute("fill", "green");
         });
     }
-}
+    document.getElementById("eingabe").focus();
+  }
 
-map.addEventListener("load", updateSVG);
+map.addEventListener('load', updateSVG);
+
+document.addEventListener("DOMContentLoaded", function() {
+  var navbar = document.getElementById("myNavbar");
+
+  window.addEventListener("scroll", function() {
+      if (window.scrollY > navbar.clientHeight) {
+          navbar.classList.add("fixed-top");
+      } else {
+          navbar.classList.remove("fixed-top");
+      }
+  });
+});
+
