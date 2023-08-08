@@ -10,6 +10,7 @@ fetch('http://localhost:3000/data')
   .then(response => response.json()) // Die Antwort als JSON interpretieren
   .then(data => {
     answers = data.answers; // Die Antworten setzen
+    countryData = data.countryData;
     // Namen den Antwortnamen zuweisen
     for(let i = 0; i < answers.length; i++) {
         answerNames.push(countryData[answers[i]].name);
