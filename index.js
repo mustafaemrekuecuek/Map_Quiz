@@ -58,7 +58,6 @@ app.post("/data", function (req,res,next) {
         success: success,
         gameover: gameover,
     });
-    console.log("Answers: " + answers + "\nanswersName: " + answersName + input);
     next();
 });
 

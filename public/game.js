@@ -18,7 +18,7 @@ fetch('http://localhost:3000/data')
     // Die Funktion aufrufen, um das SVG zu aktualisieren
     newColorMap("#FFFF80");
     newColorStroke("black");
-    
+
     updateSVG();
   })
   .catch(error => {
@@ -123,3 +123,16 @@ function updateTimer() {
 
 // Timer alle 1000ms (1 Sekunde) aktualisieren
 setInterval(updateTimer, 1000);
+
+
+const fadeOutElements = document.querySelectorAll(".fade-out");
+
+// Füge die CSS-Klasse "hidden" hinzu, um die Opazität langsam auf 0 zu ändern
+fadeOutElements.forEach(element => {
+  element.classList.add("hidden");
+
+  // Optional: Nachdem die Animation abgeschlossen ist, entferne die Klasse "fade-out"
+  element.addEventListener("transitionend", function() {
+    element.classList.remove("fade-out");
+  });
+});
