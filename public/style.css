@@ -72,13 +72,17 @@ tbody {
 
 .zelle {
     border: 1px solid #CCCCCC;
-
-    color: green;
     height: 2rem;
 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.green {
+    color: green;
+}
+.red {
+    color: red;
 }
 
 th {
@@ -92,7 +96,10 @@ td {
     align-items: center;
     padding: 4px ;
 }
-
+#Earth {
+    width: auto;
+    height: auto;
+}
 #Europe{
     grid-area: Europe;
 }
@@ -143,23 +150,40 @@ td {
     justify-content: center;
 
     margin-bottom: 6rem;
+
+    border-radius: 20px;
 }
 .card-h1 {
     text-align: center;
 
     font-size: 2rem;
 
+    background-color: #3366CC;
+
+    color: white;
+
+    font: 1.5rem;
+    padding: 4px 10px;
+
+    border-radius: 4px;
+
 }
 #reset {
-    margin-bottom: auto;
     width: 100%;
 }
+#GiveUp {
+    width: 100%;
+    margin-bottom: auto;
+}
+
+
 
 #map-container {
     display: flex;
     justify-content: center;
     align-items: center;
 
+    position: relative;
 }
 
 #map {
@@ -169,8 +193,8 @@ td {
 
 .alerts {
     position: absolute;
-    top: 20%;
-    left: 30%;
+    top: 10%;
+    left: 5px;
 
     height: auto;
     width: auto;
@@ -187,12 +211,24 @@ td {
 .gameboard {
     display: flex;
 }
+
 .fade-out {
     opacity: 1;
     transition: opacity 4s ease-in-out; /* Übergang für die Opazität über 2 Sekunden */
   }
   
-  .hidden {
+.hidden {
     opacity: 0;
+    display: none;
   }
-  
+
+  #missingCountries {
+    position: absolute;
+
+    bottom: 0;
+    right: 0;
+
+    color: red;
+
+    z-index: 200;
+  }

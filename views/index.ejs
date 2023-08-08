@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <%- include('nav.ejs') %>
+    <%- include('partials/nav.ejs') %>
 
     <main>
         <div class="gameboard d-flex gap-2 m-2 h-75 w-100">
@@ -22,13 +22,12 @@
                 <div class="card-h1">
                     Countries of the World
                 </div>
-                <form class="d-flex" role="search" action="/data" method="post">
-                    <input class="form-control me-2" autocomplete="off"  type="search" placeholder="Country" aria-label="Search" name="land"
-                        id="eingabe">
+                <form class="d-flex" role="search" action="/data" method="post" id="submitForm">
+                    <input class="form-control me-2" autocomplete="off"  type="search" placeholder="Country" aria-label="Search" name="land" id="eingabe">
                     <input class="btn btn-outline-success" type="submit" id="btn">
                 </form>
 
-                <table id="Europe" class="w-100">
+                <table class="w-100">
                     <thead>
                         <th>Last answers</th>
                     </thead>
@@ -46,15 +45,22 @@
                 <form action="/reset" method="post" id="formReset">
                     <button class="btn btn-outline-danger" type="submit" value="RESET" id="reset">RESET</button>
                 </form>
+                <form action="/gameover" method="post" id="formGiveUp">
+                    <button class="btn btn-outline-danger" type="submit" value="giveUp" id="GiveUp">GIVE UP</button>
+                </form>
             </div>
             <div id="map-container">
+
                 <div class="alerts">
-                    <%- include('alerts.ejs'); %>
+                    <%- include('partials/alerts.ejs'); %>
                 </div>
-                <object id="map" data="images/world-states.svg" type="image/svg+xml"></object>
+
+                <div>
+                    <object id="map" data="images/world-states.svg" type="image/svg+xml"></object>
+                </div>
             </div>
         </div>
-        <%- include('tables.ejs')%>
+        <%- include('partials/tables.ejs')%>
     </main>
     <script src="game.js"></script>
 </body>

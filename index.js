@@ -9,6 +9,7 @@ let language = "ENG";
 let answers = [];
 let answersName = [];
 let anzahlLastAnswers = 5;
+let gameover = false
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -20,10 +21,12 @@ app.get("/", (req,res) => {
         input: "",
         cardAnswers: [],
         success: false,
+        gameover: gameover,
     });
 });
 
 app.post("/reset", (req,res) => {
+    gameover = false;
     answers = [];
     answersName = [];
     res.redirect("/");
@@ -32,7 +35,8 @@ app.post("/reset", (req,res) => {
 
 app.post("/data", function (req,res,next) {
     let input = req.body.land.toLowerCase();
-    let success = false
+    let success = false;
+    gameover = false;
 
     if (!(input.length > 2)){
         input = "Bitte gebe mehr Buchstaben an";
@@ -52,14 +56,34 @@ app.post("/data", function (req,res,next) {
         input: input,
         cardAnswers: cardAnswers,
         success: success,
+        gameover: gameover,
     });
     console.log("Answers: " + answers + "\nanswersName: " + answersName + input);
     next();
 });
 
-app.get("/data", (req, res) => {
-    res.json({ answers: answers, countryData: countryDataJSON_ENG, });
+app.post("/gameover", function (req,res,next) {
+    let cardAnswers = answersName.slice(-anzahlLastAnswers).reverse();
+    gameover = true;
+    res.render("index.ejs", {
+        answers: [],
+        countryData: countryData,
+        answersName: answersName,
+        input: "Game Over",
+        cardAnswers: cardAnswers,
+        success: false,
+        gameover: gameover,
+    });
 });
+
+app.get("/data", (req, res) => {
+    res.json({ answers: answers, countryData: countryDataJSON_ENG, gameover: gameover});
+});
+
+app.get("/gameover", (req, res) => {
+    res.json({ answers: answers, countryData: countryDataJSON_ENG, gameover: gameover, });
+});
+
 
 app.listen(3000, () => {
     console.log("Server running on port " + port);
