@@ -50,29 +50,25 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-const fadeOutElements = document.querySelectorAll(".fade-out");
-
-// Füge die CSS-Klasse "hidden" hinzu, um die Opazität langsam auf 0 zu ändern
-fadeOutElements.forEach(element => {
-  element.classList.add("hidden");
-  
-  // Optional: Nachdem die Animation abgeschlossen ist, entferne die Klasse "fade-out"
-  element.addEventListener("transitionend", function() {
-    element.classList.remove("fade-out");
-  });
-});
-
-document.getElementById("reset").onclick = () => {
-  if (!map.contentDocument) return;
-
-  const svgDocument1 = map.contentDocument;
-
-  for(let i = 0; i < answers.length; i++) {
-      const svgElements1 = svgDocument1.querySelectorAll(`#${answers[i]} path, #${answers[i]} circle, #${answers[i]} rect`);
-
-      svgElements1.forEach(function(element) {
-          element.setAttribute("fill", "#FFFF80");
-      });
-  }
-  console.log("yes");
+//Timer
+function updateTimer() {
+    const timerElement = document.getElementById("timer");
+    
+    // Aktuelles Datum und Zeit
+    const now = new Date();
+    
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    
+    // Führende Null hinzufügen, wenn nötig
+    const formattedHours = String(hours).padStart(2, '0');
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
+    
+    // Timer aktualisieren
+    timerElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
+
+// Timer alle 1000ms (1 Sekunde) aktualisieren
+setInterval(updateTimer, 1000);

@@ -17,15 +17,11 @@
     <%- include('nav.ejs') %>
 
     <main>
-        <div class="alerts">
-            <%- include('alerts.ejs'); %>
-        </div>
-        <div class="gameboard d-flex gap-2 m-2 h-75">
+        <div class="gameboard d-flex gap-2 m-2 h-75 w-100">
             <div class="card">
-                <div>
-                    <h1>Countries of the World</h1>
+                <div class="card-h1">
+                    Countries of the World
                 </div>
-
                 <form class="d-flex" role="search" action="/data" method="post">
                     <input class="form-control me-2" autocomplete="off"  type="search" placeholder="Country" aria-label="Search" name="land"
                         id="eingabe">
@@ -37,7 +33,7 @@
                         <th>Last answers</th>
                     </thead>
                     <tbody>
-                        <%for( let i=0; i < 5; i++ ) {%>
+                        <%for( let i=0; i < cardAnswers.length; i++ ) {%>
                             <tr class="zelle">
                                 <td class="Card-Answers">
                                         <%= cardAnswers[i] %>
@@ -46,11 +42,15 @@
                             <% }%>
                     </tbody>
                 </table>
-                <form action="/" method="get">
-                    <button type="submit" value="RESET" id="reset">RESET</button>
+
+                <form action="/reset" method="post" id="formReset">
+                    <button class="btn btn-outline-danger" type="submit" value="RESET" id="reset">RESET</button>
                 </form>
             </div>
-            <div id="map-container" class="col">
+            <div id="map-container">
+                <div class="alerts">
+                    <%- include('alerts.ejs'); %>
+                </div>
                 <object id="map" data="images/world-states.svg" type="image/svg+xml"></object>
             </div>
         </div>
