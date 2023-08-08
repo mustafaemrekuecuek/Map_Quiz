@@ -1,132 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MapQuiz</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" />
 </head>
-  <body>
-    <header class="w-100">
-        <nav class="navbar w-100" id="myNavbar">
-            <div class="container-fluid">
-              <a class="navbar-brand">Länder der Welt</a>
-              <form class="d-flex" role="search" action="/data" method="post">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="land">
-                <input class="btn btn-outline-success" type="submit" id="btn">
-              </form>
-            </div>
-          </nav>
-    </header>
 
-    <div id="map-container">
-      <object id="map" data="images/world-states.svg" type="image/svg+xml"></object>
-    </div>
+<body>
+    <%- include('nav.ejs') %>
 
-
-<div class="tabellen">
-      <table id="Europe">
-        <thead>
-            <th>Europe</th>
-        </thead>
-        <tbody>
-            <% for( let i = 0; i < countryData.length; i++ ) { if
-            (countryData[i].region == "EU") {%>
-            <tr class="zelle">
-            <td id="<%= countryData[i].name %>"><%= countryData[i].name %></td>
-            </tr>
-            <% }} %>
-        </tbody>
-      </table>
-
-      <table id="Asia">
-        <thead>
-            <th>Asia</th>
-        </thead>
-        <tbody>
-            <% for( let i = 0; i < countryData.length; i++ ) { if
-            (countryData[i].region == "AS") {%>
-            <tr class="zelle">
-            <td id="<%= countryData[i].name %>"><%= countryData[i].name %></td>
-            </tr>
-            <% }} %>
-        </tbody>
-      </table>
-
-      <div class="blockNA">
-        <table id="NorthAmerica">
-            <thead>
-                <th>North America</th>
-            </thead>
-            <tbody>
-                <% for( let i = 0; i < countryData.length; i++ ) { if
-                (countryData[i].region == "NA") {%>
-                <tr class="zelle">
-                <td id="<%= countryData[i].name %>"><%= countryData[i].name %></td>
-                </tr>
-                <% }} %>
-            </tbody>
-        </table>
-            </table>
-            <table id="Antarctica">
-                <thead>
-                    <th>Antarctica</th>
-                </thead>
-                <tbody>
-                    <% for( let i = 0; i < countryData.length; i++ ) { if
-                    (countryData[i].region == "AN") {%>
-                    <tr class="zelle">
-                    <td id="<%= countryData[i].name %>"><%= countryData[i].name %></td>
-                    </tr>
-                    <% }} %>
-                </tbody>
-            </table>
-       </div>
-
-      <table id="Africa">
-        <thead>
-            <th>Africa</th>
-        </thead>
-        <tbody>
-            <% for( let i = 0; i < countryData.length; i++ ) { if
-            (countryData[i].region == "AF") {%>
-            <tr class="zelle">
-            <td id="<%= countryData[i].name %>"><%= countryData[i].name %></td>
-            </tr>
-            <% }} %>
-        </tbody>
-      </table>
-
-       <div class="blockSA">
-        <table id="SouthAmerica">
-            <thead>
-                <th>South America</th>
-            </thead>
-            <tbody>
-                <% for( let i = 0; i < countryData.length; i++ ) { if
-                (countryData[i].region == "SA") {%>
-                <tr class="zelle">
-                <td id="<%= countryData[i].name %>"><%= countryData[i].name %></td>
-                </tr>
-                <% }} %>
-            </tbody>
-        </table>
-      <table id="Oceania">
-        <thead>
-            <th>Oceania</th>
-        </thead>
-        <tbody>
-            <% for( let i = 0; i < countryData.length; i++ ) { if
-            (countryData[i].region == "OC") {%>
-            <tr class="zelle">
-            <td id="<%= countryData[i].name %>"><%= countryData[i].name %></td>
-            </tr>
-            <% }} %>
-        </tbody>
+    <main>
+        <div class="alerts">
+            <%- include('alerts.ejs'); %>
         </div>
-</div>
+        <div class="gameboard d-flex gap-2 m-2 h-75">
+            <div class="card">
+                <div>
+                    <h1>Countries of the World</h1>
+                </div>
+
+                <form class="d-flex" role="search" action="/data" method="post">
+                    <input class="form-control me-2" autocomplete="off"  type="search" placeholder="Country" aria-label="Search" name="land"
+                        id="eingabe">
+                    <input class="btn btn-outline-success" type="submit" id="btn">
+                </form>
+
+                <table id="Europe" class="w-100">
+                    <thead>
+                        <th>Last answers</th>
+                    </thead>
+                    <tbody>
+                        <%for( let i=0; i < 5; i++ ) {%>
+                            <tr class="zelle">
+                                <td class="Card-Answers">
+                                        <%= cardAnswers[i] %>
+                                </td>
+                            </tr>
+                            <% }%>
+                    </tbody>
+                </table>
+                <form action="/" method="get">
+                    <button type="submit" value="RESET" id="reset">RESET</button>
+                </form>
+            </div>
+            <div id="map-container" class="col">
+                <object id="map" data="images/world-states.svg" type="image/svg+xml"></object>
+            </div>
+        </div>
+        <%- include('tables.ejs')%>
+    </main>
     <script src="game.js"></script>
-  </body>
+</body>
+
 </html>

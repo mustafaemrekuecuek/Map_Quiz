@@ -8,8 +8,12 @@ body {
 
     margin: 0;
     padding: 0;
+    color: white;
 }
-.navbar {
+.navbar span{
+    color: white;
+}
+.navbar-brand {
     color: white;
 }
 #world {
@@ -21,17 +25,19 @@ body {
     width: 100%;
     height: 100%;
 }
-
+.green {
+    fill: green !important;
+}
 .tabellen {
     display: grid;
 
     grid-template-areas: 
     "Europe Asia Africa NorthAmerica SouthAmerica";
 
-    justify-content: center;
+    gap: 5px;
+    width: 100%;
 
-    gap: 10px;
-
+    padding: 0 3rem;
 }
 
 table {
@@ -40,7 +46,7 @@ table {
 
     align-items: center;
 
-    width: 100%;
+    width: 12rem;
 }
 thead {
     display: flex;
@@ -51,7 +57,10 @@ thead {
     width: 100%;
 
     font-size: 1.5rem;
+
+    padding: 4px 10px;
 }
+
 tbody {
     display: flex;
     flex-direction: column;
@@ -64,11 +73,16 @@ tbody {
 }
 
 .zelle {
-    padding: 5px 8px;
     border: 1px solid #CCCCCC;
 
     color: green;
+    height: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 th {
     color: white;
 }
@@ -76,19 +90,23 @@ th {
 td {
     display: flex;
     justify-content: center;
+    height: 20px;
+    align-items: center;
+    padding: 4px ;
 }
+
 #Europe{
     grid-area: Europe;
 }
+
 #Asia{
     grid-area: Asia;
 }
-.blockNA{
+
+#NorthAmerica{
     grid-area: NorthAmerica;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
 }
+
 .blockSA{
     grid-area: SouthAmerica;
 
@@ -96,6 +114,7 @@ td {
     flex-direction: column;
     gap: 30px;
 }
+
 #Africa {
     grid-area: Africa;
 }
@@ -107,3 +126,43 @@ td {
 #myNavbar.fixed-top {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
 }
+
+
+.score {
+    color: black;
+
+    font-size: 2rem;
+
+}
+#Earth {
+    width: 100%;
+    height: 500;
+}
+
+.alerts {
+    position: absolute;
+    top: 15%;
+    left: 20%;
+
+    height: 75px;
+    width: auto;
+}
+.alert svg {
+    height: 50px;
+    width: 50px;
+}
+.alert div {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+
+.fade-out {
+    opacity: 1;
+    transition: opacity 4s ease-in-out; /* Übergang für die Opazität über 2 Sekunden */
+  }
+  
+  .hidden {
+    opacity: 0;
+  }
+  
