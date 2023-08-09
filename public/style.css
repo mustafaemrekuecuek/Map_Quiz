@@ -236,3 +236,66 @@ td {
 .alertInput::first-letter{
      text-transform: uppercase;
 }
+
+.input-correct {
+    font-weight: 600;
+    color: white;
+    background-color: rgb(120, 205, 120);
+}
+
+.flag {
+    max-height: 240px;
+    min-height: 32px;
+    max-width: 240px;
+    min-width: 32px;
+
+    border: solid 1px black;
+
+    margin-top: auto;
+}
+.flaggen-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 2%;
+}
+
+.flaggen-container {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.flaggen-h1 {
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.FlagAndInput {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+
+    gap: 20px;
+}
+
+.inputFlag {
+    justify-self: flex-end;
+    width: 75%;
+}
+
+.focus {
+    background-color: khaki;
+}

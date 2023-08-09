@@ -13,16 +13,17 @@
 </head>
 <body>
     <%- include('partials/nav.ejs') %>
-    <main>
-        <% for( let i = 0; i < countryID.length; i++ ) { %>
-        <div class="Flags">
-            <%if(countryID[i] != "XK") {%>
-            <img draggable="false" src="https://flagsapi.com/<%= countryID[i]%>/flat/64.png">
-            <%  %>
-            <input type="text" name="inputFlag" class="inputFlag" id="<%=countryID[i]%>">
-            <% } %>
+    <main class="container-fluid flaggen-main">
+        <h1 class="flaggen-h1 w-100 text-center" style="color: black;"> Flags of the World </h1>
+         <div class="container-fluid flaggen-container row-gap-5 column-gap-3">
+            
+           <%for( let i = 0; i < countryID.length; i++ ) { %>
+                <div class="FlagAndInput">
+                    <img  class="flag" draggable="false" src="https://flagcdn.com/h240/<%= countryID[i].toLowerCase() %>.png">
+                    <input type="text" name="inputFlag" class="inputFlag" id="<%=countryID[i]%>">
+                </div>
+            <%} %>
         </div>
-        <%} %>
         </main>
         <script src="flags.js"></script>
     </body>

@@ -101,30 +101,6 @@ function newColorStroke(color) {
   // CSS-Variable --map-color im :root-Pseudo-Element ändern
   svgDocument.documentElement.style.setProperty('--stroke-color', newColorStroke);
 }
-//Timer
-function updateTimer() {
-    const timerElement = document.getElementById("timer");
-    
-    // Aktuelles Datum und Zeit
-    const now = new Date();
-    
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-    
-    // Führende Null hinzufügen, wenn nötig
-    const formattedHours = String(hours).padStart(2, '0');
-    const formattedMinutes = String(minutes).padStart(2, '0');
-    const formattedSeconds = String(seconds).padStart(2, '0');
-    
-    // Timer aktualisieren
-    timerElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-}
-
-// Timer alle 1000ms (1 Sekunde) aktualisieren
-setInterval(updateTimer, 1000);
-
-
 const fadeOutElements = document.querySelectorAll(".fade-out");
 
 // Füge die CSS-Klasse "hidden" hinzu, um die Opazität langsam auf 0 zu ändern

@@ -9,10 +9,20 @@ let language = "ENG";
 let answers = [];
 let answersName = [];
 let anzahlLastAnswers = 5;
-let gameover = false
+let gameover = false;
+let answersFlag = [];
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+    }
 
 app.get("/", (req,res) => {
     res.render("index.ejs", {
@@ -35,6 +45,13 @@ app.get('/flags', (req, res) => {
         countryID: countryID,
     });
   });
+
+app.post("/flags-save", (req, res) => {
+   answersFlag = req.body.answersFlag; // Hier erhältst du das Array vom Client
+   
+   const response = { message: "Array erfolgreich empfangen" };
+   res.json(response);
+});
 
 app.post("/reset", (req,res) => {
     gameover = false;
@@ -95,7 +112,7 @@ app.get("/gameover", (req, res) => {
 });
 
 app.get("/flags-data", (req, res) => {
-    res.json({ answers: [], countryData: countryDataJSON_ENG, countryID: countryID, });
+    res.json({answers: [], countryData: countryDataJSON_ENG, countryID: countryID, answersFlag: answersFlag});
 });
 
 app.listen(3000, () => {
@@ -166,4 +183,6 @@ const sorted = Object.fromEntries(
 );
 
 const countryData = Object.values(sorted);
-const countryID = Object.keys(sorted);
+let countryID = Object.keys(sorted);
+
+countryID = shuffleArray([...countryID]);
