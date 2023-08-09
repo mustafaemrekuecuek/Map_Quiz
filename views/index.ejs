@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,9 +31,9 @@
                         <th>Last answers</th>
                     </thead>
                     <tbody>
-                        <%for( let i=0; i < cardAnswers.length; i++ ) {%>
+                        <%for( let i=0; i < 5; i++ ) {%>
                             <tr class="zelle">
-                                <td class="Card-Answers">
+                                <td class="Card-Answers" style="color: green; font-size: 1.25rem; font-weight: 600;">
                                         <%= cardAnswers[i] %>
                                 </td>
                             </tr>
@@ -63,6 +62,5 @@
         <%- include('partials/tables.ejs')%>
     </main>
     <script src="game.js"></script>
-</body>
-
+    </body>
 </html>

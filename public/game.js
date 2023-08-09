@@ -101,7 +101,6 @@ function newColorStroke(color) {
   // CSS-Variable --map-color im :root-Pseudo-Element ändern
   svgDocument.documentElement.style.setProperty('--stroke-color', newColorStroke);
 }
-
 //Timer
 function updateTimer() {
     const timerElement = document.getElementById("timer");
