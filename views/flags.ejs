@@ -12,12 +12,23 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <%- include('partials/nav.ejs') %>
+    <%- include('partials/nav-flags.ejs') %>
     <main class="container-fluid flaggen-main">
         <h1 class="flaggen-h1 w-100 text-center" style="color: black;"> Flags of the World </h1>
          <div class="container-fluid flaggen-container row-gap-5 column-gap-3">
             
-           <%for( let i = 0; i < countryID.length; i++ ) { %>
+           <%
+           function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+           countryID = shuffleArray([...countryID]);
+
+            for( let i = 0; i < countryID.length; i++ ) { %>
                 <div class="FlagAndInput">
                     <img  class="flag" draggable="false" src="https://flagcdn.com/h240/<%= countryID[i].toLowerCase() %>.png">
                     <input type="text" name="inputFlag" class="inputFlag" id="<%=countryID[i]%>">

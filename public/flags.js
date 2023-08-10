@@ -8,12 +8,12 @@ fetch('http://localhost:3000/flags-data')
     var countryID = data.countryID;
     answersFlag = data.answersFlag;
     let inputElements = document.querySelectorAll(".inputFlag");
-
+    document.getElementById("punkte").innerText = answersFlag.length;
     for(var i = 0; i < inputElements.length; i++){
         let currentElement = inputElements[i];
         let nextElement = inputElements[i+1];
         let id = inputElements[i].id;
-
+        let altNames = countryData[id].altnames ? countryData[id].altnames.toLowerCase() : "ÙÇ◊‹ÌÍ";
         for(let j = 0; j < answersFlag.length; j++){
           if(answersFlag[j] == countryData[id].name) {
             currentElement.value = countryData[id].name;
@@ -22,14 +22,15 @@ fetch('http://localhost:3000/flags-data')
           }
         }
         currentElement.addEventListener("input", function() {
-            if(currentElement.value.toLowerCase() == countryData[id].name.toLowerCase() && !answersFlag.includes(currentElement.value)) {
+            if((currentElement.value.toLowerCase() == countryData[id].name.toLowerCase() || altNames.toLowerCase() == currentElement.value.toLowerCase()) && !answersFlag.includes(currentElement.value)) {
                 currentElement.value = countryData[id].name;
                 currentElement.classList.add("input-correct");
                 currentElement.disabled = true;
                 answersFlag.push(countryData[id].name);
+                document.getElementById("punkte").innerText = answersFlag.length;
                 nextElement.focus();
             }
-        })
+          })
     };
     inputElements.forEach(input => {
       input.addEventListener("focus", function() {
@@ -44,7 +45,6 @@ fetch('http://localhost:3000/flags-data')
     console.error('Error:', error.message);
   });
 
-
   window.addEventListener("beforeunload", function(event) {
     const dataToSend = { answersFlag: answersFlag };
   
@@ -58,11 +58,24 @@ fetch('http://localhost:3000/flags-data')
     })
     .then(response => {
       // Hier könntest du auf die Serverantwort reagieren
+      event.returnValue = "Möchten Sie die Seite wirklich verlassen?";
     })
     .catch(error => {
       console.error("Fehler beim Senden der Daten:", error);
     });
   
-    event.returnValue = "Möchten Sie die Seite wirklich verlassen?";
   });
-console.log(answersFlag);
+
+// Funktion ausführen, wenn das DOM vollständig geladen ist
+document.addEventListener("DOMContentLoaded", function() {
+var navbar = document.getElementById("myNavbar");
+
+// Bei einem Scrollereignis den Zustand der Navbar anpassen
+window.addEventListener("scroll", function() {
+    if (window.scrollY > navbar.clientHeight) {
+        navbar.classList.add("fixed-top");
+    } else {
+        navbar.classList.remove("fixed-top");
+    }
+});
+});
