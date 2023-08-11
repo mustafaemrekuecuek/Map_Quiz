@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flags of the World</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -15,8 +15,8 @@
     <%- include('partials/nav-flags.ejs') %>
     <main class="container-fluid flaggen-main">
         <h1 class="flaggen-h1 w-100 text-center" style="color: black;"> Flags of the World </h1>
-         <div class="container-fluid flaggen-container row-gap-5 column-gap-3">
-            
+         <div class="container-fluid text-center  row-gap-5 column-gap-3">
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
            <%
            function shuffleArray(array) {
                 for (let i = array.length - 1; i > 0; i--) {
@@ -29,12 +29,13 @@
            countryID = shuffleArray([...countryID]);
 
             for( let i = 0; i < countryID.length; i++ ) { %>
-                <div class="FlagAndInput">
+                <div class="FlagAndInput col mt-2">
                     <img  class="flag" draggable="false" src="https://flagcdn.com/h240/<%= countryID[i].toLowerCase() %>.png">
                     <input type="text" name="inputFlag" class="inputFlag" id="<%=countryID[i]%>">
                 </div>
             <%} %>
-        </div>
+            </div>
+            </div>
         </main>
         <script src="flags.js"></script>
     </body>

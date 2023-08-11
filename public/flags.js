@@ -9,7 +9,7 @@ fetch('http://localhost:3000/flags-data')
     answersFlag = data.answersFlag;
     let inputElements = document.querySelectorAll(".inputFlag");
     document.getElementById("punkte").innerText = answersFlag.length;
-    for(var i = 0; i < inputElements.length; i++){
+    for(let i = 0; i < inputElements.length; i++){
         let currentElement = inputElements[i];
         let nextElement = inputElements[i+1];
         let id = inputElements[i].id;

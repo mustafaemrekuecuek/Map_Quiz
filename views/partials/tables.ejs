@@ -1,126 +1,199 @@
-<div class="tabellen">
-    <table id="Europe">
-        <thead>
-            <th>Europe</th>
-        </thead>
-        <tbody>
-            <% for( let i=0; i < countryData.length; i++ ) { 
-                if (countryData[i].region=="EU" ) {%>
+<div class="container-fluid text-center  row-gap-5 column-gap-3">
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
 
-                <tr class="zelle">
-                    <%if(answersName.includes(countryData[i].name)){%>
-                        <td id="<%= countryData[i].name %>" class="green">
-                            <%= countryData[i].name %>
-                        </td>
-                    <% } else if(locals.gameover == true){%>
-                        <td id="<%= countryData[i].name %>" class="red">
-                            <%= countryData[i].name %>
-                        </td>
-                    <%}%>
+    <div class="col">
+        <table class="table table-hover table-bordered" id="Europe">
+        <thead class="table-header">
+            <tr>
+                <th scope="col" class="table-header" style="background-color: #53599A;">Europe</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider" style="border-top-color: #17183B;">
+        <% for (let i = 0; i < countryData.length; i++) { 
+            if (countryData[i].region == "EU") { %>
+
+            <% if (answersName.includes(countryData[i].name)) { %>
+                <tr class="table-success">
+                    <td id="<%= countryData[i].name %>" class="table-success" style="color: green; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
                 </tr>
-                <% }}; %>
+            <% } else if (locals.gameover == true) { %>
+                <tr class="table-danger">
+                    <td id="<%= countryData[i].name %>" class="table-danger" style="color: red; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
+                </tr>
+            <% } else { %>
+                <tr class="leer">
+                    <td></td>
+                </tr>
+            <% } } }; %>
         </tbody>
     </table>
+    </div>
 
-    <table id="Asia">
-        <thead>
-            <th>Asia</th>
-        </thead>
-        <tbody>
-            <% for( let i=0; i < countryData.length; i++ ) { if (countryData[i].region=="AS" ) {%>
-                <tr class="zelle">
-                    <%if(answersName.includes(countryData[i].name)){%>
-                        <td id="<%= countryData[i].name %>" class="green">
-                            <%= countryData[i].name %>
-                        </td>
-                    <% } else if(locals.gameover == true){%>
-                        <td id="<%= countryData[i].name %>" class="red">
-                            <%= countryData[i].name %>
-                        </td>
-                    <%}%>
+<div class="col">
+    <table class="table table-hover table-bordered" id="Asia">
+    <thead class="table-header">
+        <tr>
+            <th  class="table-header" style="background-color: #53599A;">Asia</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider" style="border-top-color: #17183B;">
+        <% for (let i = 0; i < countryData.length; i++) { 
+            if (countryData[i].region == "AS") { %>
+
+            <% if (answersName.includes(countryData[i].name)) { %>
+                <tr class="table-success">
+                    <td id="<%= countryData[i].name %>" class="table-success" style="color: green; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
                 </tr>
-                <% }} %>
+            <% } else if (locals.gameover == true) { %>
+                <tr class="table-danger">
+                    <td id="<%= countryData[i].name %>" class="table-danger" style="color: red; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
+                </tr>
+            <% } else { %>
+                <tr class="leer">
+                    <td></td>
+                </tr>
+            <% } } }; %>
+    </tbody>
+</table>
+</div>
+
+
+<div class="col">
+<table class="table table-hover table-bordered" id="NorthAmerica">
+    <thead class="table-header">
+        <tr>
+            <th scope="col" class="table-header" style="background-color: #53599A;">North America</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider" style="border-top-color: #17183B;">
+        <% for (let i = 0; i < countryData.length; i++) { 
+            if (countryData[i].region == "NA") { %>
+
+            <% if (answersName.includes(countryData[i].name)) { %>
+                <tr class="table-success">
+                    <td id="<%= countryData[i].name %>" class="table-success" style="color: green; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
+                </tr>
+            <% } else if (locals.gameover == true) { %>
+                <tr class="table-danger">
+                    <td id="<%= countryData[i].name %>" class="table-danger" style="color: red; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
+                </tr>
+            <% } else { %>
+                <tr class="leer">
+                    <td></td>
+                </tr>
+            <% } } }; %>
+    </tbody>
+</table>
+</div>
+
+
+<div class="col">
+<table class="table table-hover table-bordered" id="Africa">
+    <thead class="table-header">
+        <tr>
+            <th scope="col" class="table-header" style="background-color: #53599A;">Africa</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider" style="border-top-color: #17183B;">
+        <% for (let i = 0; i < countryData.length; i++) { 
+            if (countryData[i].region == "AF") { %>
+
+            <% if (answersName.includes(countryData[i].name)) { %>
+                <tr class="table-success">
+                    <td id="<%= countryData[i].name %>" class="table-success" style="color: green; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
+                </tr>
+            <% } else if (locals.gameover == true) { %>
+                <tr class="table-danger">
+                    <td id="<%= countryData[i].name %>" class="table-danger" style="color: red; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
+                </tr>
+            <% } else { %>
+                <tr class="leer">
+                    <td></td>
+                </tr>
+            <% } } }; %>
+    </tbody>
+</table>
+</div>
+
+
+<div class="col">
+<table class="table table-hover table-bordered" id="SouthAmerica">
+    <thead class="table-header">
+        <tr>
+            <th scope="col" class="table-header" style="background-color: #53599A;">South America</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider" style="border-top-color: #17183B;">
+        <% for (let i = 0; i < countryData.length; i++) { 
+            if (countryData[i].region == "SA") { %>
+
+            <% if (answersName.includes(countryData[i].name)) { %>
+                <tr class="table-success">
+                    <td id="<%= countryData[i].name %>" class="table-success" style="color: green; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
+                </tr>
+            <% } else if (locals.gameover == true) { %>
+                <tr class="table-danger">
+                    <td id="<%= countryData[i].name %>" class="table-danger" style="color: red; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
+                </tr>
+            <% } else { %>
+                <tr class="leer">
+                    <td></td>
+                </tr>
+            <% } } }; %>
+    </tbody>
+</table>
+</div>
+<div class="col">
+<table class="table table-hover table-bordered" id="Oceania">
+    <thead class="table-header">
+        <tr>
+            <th scope="col" class="table-header" style="background-color: #53599A;">Oceania</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider" style="border-top-color: #17183B;">
+        <% for (let i = 0; i < countryData.length; i++) { 
+            if (countryData[i].region == "OC") { %>
+
+            <% if (answersName.includes(countryData[i].name)) { %>
+                <tr class="table-success">
+                    <td id="<%= countryData[i].name %>" class="table-success" style="color: green; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
+                </tr>
+            <% } else if (locals.gameover == true) { %>
+                <tr class="table-danger">
+                    <td id="<%= countryData[i].name %>" class="table-danger" style="color: red; font-weight: 600;">
+                        <%= countryData[i].name %>
+                    </td>
+                </tr>
+            <% } else { %>
+                <tr class="leer">
+                    <td></td>
+                </tr>
+            <% } } }; %>
         </tbody>
     </table>
-    <table id="NorthAmerica">
-        <thead>
-            <th>North America</th>
-        </thead>
-        <tbody>
-            <% for( let i=0; i < countryData.length; i++ ) { if (countryData[i].region=="NA" ) {%>
-                <tr class="zelle">
-                    <%if(answersName.includes(countryData[i].name)){%>
-                        <td id="<%= countryData[i].name %>" class="green">
-                            <%= countryData[i].name %>
-                        </td>
-                    <% } else if(locals.gameover == true){%>
-                        <td id="<%= countryData[i].name %>" class="red">
-                            <%= countryData[i].name %>
-                        </td>
-                    <%}%>
-                </tr>
-                <% }} %>
-        </tbody>
-    </table>
-
-    <table id="Africa">
-        <thead>
-            <th>Africa</th>
-        </thead>
-        <tbody>
-            <% for( let i=0; i < countryData.length; i++ ) { if (countryData[i].region=="AF" ) {%>
-                <tr class="zelle">
-                    <%if(answersName.includes(countryData[i].name)){%>
-                        <td id="<%= countryData[i].name %>" class="green">
-                            <%= countryData[i].name %>
-                        </td>
-                    <% } else if(locals.gameover == true){%>
-                        <td id="<%= countryData[i].name %>" class="red">
-                            <%= countryData[i].name %>
-                        </td>
-                    <%}%>
-                </tr>
-                <% }} %>
-        </tbody>
-    </table>
-
-    <div class="blockSA">
-        <table id="SouthAmerica">
-            <thead>
-                <th>South America</th>
-            </thead>
-            <tbody>
-                <% for( let i=0; i < countryData.length; i++ ) { if (countryData[i].region=="SA" ) {%>
-                    <tr class="zelle">
-                    <%if(answersName.includes(countryData[i].name)){%>
-                        <td id="<%= countryData[i].name %>" class="green">
-                            <%= countryData[i].name %>
-                        </td>
-                    <% } else if(locals.gameover == true){%>
-                        <td id="<%= countryData[i].name %>" class="red">
-                            <%= countryData[i].name %>
-                        </td>
-                    <%}%>
-                </tr>
-                    <% }} %>
-            </tbody>
-        </table>
-        <table id="Oceania">
-            <thead>
-                <th>Oceania</th>
-            </thead>
-            <tbody>
-                <% for( let i=0; i < countryData.length; i++ ) { if (countryData[i].region=="OC" ) {%>
-                    <tr class="zelle">
-                    <%if(answersName.includes(countryData[i].name)){%>
-                        <td id="<%= countryData[i].name %>" class="green">
-                            <%= countryData[i].name %>
-                        </td>
-                    <% } else if(locals.gameover == true){%>
-                        <td id="<%= countryData[i].name %>" class="red">
-                            <%= countryData[i].name %>
-                        </td>
-                    <%}%>
-                </tr>
-                    <% }} %>
-            </tbody>
+    </div>
+        </div>
+    </div>
+</div>

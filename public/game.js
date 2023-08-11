@@ -1,6 +1,4 @@
-// Das map-Element und den Button mit der Klasse .btn auswählen
 const map = document.querySelector("#map");
-const btn = document.querySelector('.btn');
 
 // Ein Array, um die Namen der ausgewählten Antworten zu speichern
 let answerNames = [];
@@ -11,6 +9,7 @@ fetch('http://localhost:3000/data')
   .then(data => {
     answers = data.answers; // Die Antworten setzen
     countryData = data.countryData;
+
     // Namen den Antwortnamen zuweisen
     for(let i = 0; i < answers.length; i++) {
         answerNames.push(countryData[answers[i]].name);
@@ -51,10 +50,11 @@ function updateSVG() {
 
     // Die Farbe der SVG-Elemente der ausgewählten Antworten auf Grün ändern
     for(let i = 0; i < answers.length; i++) {
-        const svgElements = svgDocument.querySelectorAll(`#${answers[i]} path, #${answers[i]} circle, #${answers[i]} rect`);
-
+        let id = answers[i].toLowerCase();      
+        console.log(answers[i].toLowerCase());
+        const svgElements = svgDocument.querySelectorAll(`.${id}`);
         svgElements.forEach(function(element) {
-            element.setAttribute("fill", "green");
+            element.classList.add("green");
         });
     }
     // Den Fokus auf das Element mit der ID "eingabe" setzen
@@ -80,14 +80,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function newColorMap(color) {
   var newColorMap = color;
+
+  var newColorStroke = color;
   // Prüfen, ob map.contentDocument existiert
   if (!map.contentDocument) return;
 
-  // SVG-Dokument aus dem eingebetteten iframe holen
   const svgDocument = map.contentDocument;
 
-  // CSS-Variable --map-color im :root-Pseudo-Element ändern
-  svgDocument.documentElement.style.setProperty('--map-color', newColorMap);
+      const svgElements = svgDocument.querySelectorAll(`.landxx`);
+      svgElements.forEach(function(element) {
+          element.classList.add(newColorMap);
+      });
 }
 
 function newColorStroke(color) {
@@ -95,11 +98,12 @@ function newColorStroke(color) {
   // Prüfen, ob map.contentDocument existiert
   if (!map.contentDocument) return;
 
-  // SVG-Dokument aus dem eingebetteten iframe holen
   const svgDocument = map.contentDocument;
 
-  // CSS-Variable --map-color im :root-Pseudo-Element ändern
-  svgDocument.documentElement.style.setProperty('--stroke-color', newColorStroke);
+      const svgElements = svgDocument.querySelectorAll(`.landxx`);
+      svgElements.forEach(function(element) {
+          element.classList.add(newColorStroke);
+      });
 }
 const fadeOutElements = document.querySelectorAll(".fade-out");
 
