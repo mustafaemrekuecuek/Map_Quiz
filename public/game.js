@@ -9,17 +9,51 @@ fetch('http://localhost:3000/data')
   .then(data => {
     answers = data.answers; // Die Antworten setzen
     countryData = data.countryData;
+    countryID = data.countryID;
 
+    console.log(countryData);
     // Namen den Antwortnamen zuweisen
     for(let i = 0; i < answers.length; i++) {
         answerNames.push(countryData[answers[i]].name);
     }
-  
+
+    function getID(name) {
+      input = name;
+      let id = "";
+      for (let i = 0; i < countryID.length-1; i++) {
+        if(input == countryData[countryID[i]].name){
+          id = countryID[i];
+        }
+      }
+      return id;
+    }
+
     // Die Funktion aufrufen, um das SVG zu aktualisieren
     newColorMap("#FFFF80");
-    newColorStroke("black");
-
     updateSVG();
+
+    const zelle = document.querySelectorAll(".hoverEffect");
+
+    zelle.forEach(elements => {
+    elements.addEventListener('click', function() {
+      // Hier kannst du den Code platzieren, der ausgeführt wird, wenn über das Element geschwebt wird
+        let input = this.textContent.trim();
+
+        const countryCode = getID(input).toLowerCase();
+
+        showCountry(countryCode);
+      });
+      function isObjectOutOfView(element) {
+        var rect = element.getBoundingClientRect();
+        return rect.bottom < 0 || rect.top > window.innerHeight;
+      }
+  
+      if(isObjectOutOfView(document.getElementById("eingabe"))){
+        document.getElementById("eingabe2").focus();
+      } else {
+        document.getElementById("eingabe").focus();
+      }
+    });
   })
   .catch(error => {
     console.error('Error:', error.message);
@@ -50,15 +84,12 @@ function updateSVG() {
 
     // Die Farbe der SVG-Elemente der ausgewählten Antworten auf Grün ändern
     for(let i = 0; i < answers.length; i++) {
-        let id = answers[i].toLowerCase();      
-        console.log(answers[i].toLowerCase());
+        let id = answers[i].toLowerCase();
         const svgElements = svgDocument.querySelectorAll(`.${id}`);
         svgElements.forEach(function(element) {
             element.classList.add("green");
         });
     }
-    // Den Fokus auf das Element mit der ID "eingabe" setzen
-    document.getElementById("eingabe").focus();
 }
 
 // Die Funktion updateSVG aufrufen, wenn das SVG im iframe geladen ist
@@ -79,9 +110,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function newColorMap(color) {
-  var newColorMap = color;
-
-  var newColorStroke = color;
   // Prüfen, ob map.contentDocument existiert
   if (!map.contentDocument) return;
 
@@ -89,7 +117,7 @@ function newColorMap(color) {
 
       const svgElements = svgDocument.querySelectorAll(`.landxx`);
       svgElements.forEach(function(element) {
-          element.classList.add(newColorMap);
+          element.classList.add(color);
       });
 }
 
@@ -116,3 +144,22 @@ fadeOutElements.forEach(element => {
     element.classList.remove("fade-out");
   });
 });
+
+
+function showCountry(countryCode) {
+  // Überprüfen, ob das SVG geladen ist
+  if (!map.contentDocument) return;
+  console.log(countryCode);
+  // Verweise auf das SVG-Dokument im <object>-Element
+  const svgDocument = map.contentDocument;
+
+  // Finde das SVG-Element mit der entsprechenden Klasse (z.B. "DE" für Deutschland)
+  const svgElement = svgDocument.querySelectorAll(`.${countryCode}`);
+    // Füge die Klasse "blue" hinzu (vorausgesetzt, "blue" ist im CSS definiert)
+    svgElement.forEach(element => {
+      element.style.animation = 'highlight 4s ease-in-out';
+      setTimeout(() => {
+        element.style.animation = '';
+      }, 5000);
+  });
+}

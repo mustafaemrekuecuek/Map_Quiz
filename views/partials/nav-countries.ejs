@@ -1,6 +1,23 @@
 <header class="w-100">
     <nav class="navbar w-100 justify-content-between p-1" id="myNavbar">
             <a class="navbar-brand" href="/flags" style="color: white;font-size: 1.5rem; font-weight: 700;">Flags of the World</a>
+
+            <div class="dropdown-center">
+                <form id="language-form" method="post" action="/language">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Language
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><button type="submit" class="dropdown-item" name="language" value="ENG">English</button></li>
+                        <li><button type="submit" class="dropdown-item" name="language" value="GER">German</button></li>
+                    </ul>
+                </form>
+            </div>
+            
+            <form class="d-flex" role="search" action="/data" method="post" id="submitForm">
+                <input class="form-control me-2" autocomplete="off"  type="search" placeholder="Country" aria-label="Search" name="land" id="eingabe2">
+                <input class="btn btn-outline-success" type="submit" id="btn">
+            </form>
             <span class="score">
                 <%=answers.length%>/<%= countryData.length %>
             </span>
