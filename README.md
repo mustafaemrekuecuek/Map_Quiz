@@ -2,6 +2,9 @@
 
 ## Description
 
+![Preview](Preview.png)
+
+
 QuizMap is an interactive geography quiz application that tests and enhances your knowledge about the countries of the world. With a sleek user interface and engaging challenges, this application is designed for both geography enthusiasts and anyone looking to learn more about the world.
 
 ### Features
